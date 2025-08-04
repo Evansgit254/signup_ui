@@ -38,7 +38,7 @@ export function SignupPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full max-w-none">
       {/* Header - Fixed position, exact Figma specs */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-white border-b border-gray-200" style={{ height: '88px' }}>
         <div className="text-2xl font-bold">STUCRUUM</div>
@@ -122,12 +122,12 @@ export function SignupPage() {
             </div>
           </div>
 
-          {/* Right Side - Form (40% width, 512px width, 240px height) */}
-          <div className="w-[40%] flex items-center justify-center px-8">
-            <div className="w-full max-w-[512px] flex justify-center">
-              <SignupForm />
-            </div>
-          </div>
+                     {/* Right Side - Form (40% width, 512px width, 240px height) */}
+           <div className="w-[40%] flex items-center justify-center px-8">
+             <div className="w-full">
+               <SignupForm />
+             </div>
+           </div>
         </div>
       </div>
 

@@ -53,90 +53,89 @@ export function SignupForm() {
 
   return (
     <div className="w-full max-w-none" style={{ height: '240px' }}>
-      <div className="mb-8">
-        <div className="flex items-center gap-4 mb-2">
-          <h1 className="text-2xl font-medium">Sign up</h1>
-          <span className="text-sm text-gray-600">
-            Already have an account?{' '}
-            <a href="/login" className="text-black font-medium hover:underline">
-              Login
-            </a>
-          </span>
-        </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
-          Create your account to unlock your creative potential<br />
-          with our photography community
-        </p>
-      </div>
+             <div className="mb-8">
+         <h1 className="text-2xl font-medium mb-2">Sign up</h1>
+         <div className="flex items-center gap-2 mb-4">
+           <span className="text-gray-400">•</span>
+           <span className="text-sm text-gray-600">
+             Already have an account?{' '}
+             <a href="/login" className="text-black font-medium hover:underline">
+               Login
+             </a>
+           </span>
+         </div>
+         <p className="text-gray-600 text-sm leading-relaxed mb-6">
+           Create your account to unlock your creative potential<br className="hidden md:block" />
+           <span className="md:hidden"> </span>with our photography community
+         </p>
+       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4 w-full">
-        {/* First and Last Name - Side by side */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-              First name
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-              placeholder="Your name"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-              Last name
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-              placeholder="Your last name"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Email and Create password - Side by side */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-              placeholder="Your email address"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium mb-2">
-              Create password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-              placeholder="Enter password"
-              required
-            />
-          </div>
-        </div>
+             <form onSubmit={handleSubmit} className="w-full">
+         <div className="form-grid grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" style={{ 
+           display: 'grid', 
+           gap: '1rem'
+         }}>
+           <div>
+             <label htmlFor="firstName" className="block text-sm font-medium mb-2">
+               First name
+             </label>
+             <input
+               type="text"
+               id="firstName"
+               name="firstName"
+               value={formData.firstName}
+               onChange={handleChange}
+               className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+               placeholder="Your name"
+               required
+             />
+           </div>
+           <div>
+             <label htmlFor="lastName" className="block text-sm font-medium mb-2">
+               Last name
+             </label>
+             <input
+               type="text"
+               id="lastName"
+               name="lastName"
+               value={formData.lastName}
+               onChange={handleChange}
+               className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+               placeholder="Your last name"
+               required
+             />
+           </div>
+           <div>
+             <label htmlFor="email" className="block text-sm font-medium mb-2">
+               Email
+             </label>
+             <input
+               type="email"
+               id="email"
+               name="email"
+               value={formData.email}
+               onChange={handleChange}
+               className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+               placeholder="Your email address"
+               required
+             />
+           </div>
+           <div>
+             <label htmlFor="password" className="block text-sm font-medium mb-2">
+               Create password
+             </label>
+             <input
+               type="password"
+               id="password"
+               name="password"
+               value={formData.password}
+               onChange={handleChange}
+               className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+               placeholder="Enter password"
+               required
+             />
+           </div>
+         </div>
 
         {error && (
           <div className="text-red-600 text-sm">{error}</div>
