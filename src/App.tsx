@@ -1,4 +1,4 @@
-import { SignupPage } from '../pages/SignupPage'
+import { SignupPage } from './pages/SignupPage'
 
 export function App() {
   return <SignupPage />
