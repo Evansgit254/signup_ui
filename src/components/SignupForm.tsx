@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface SignupFormData {
   firstName: string;
@@ -16,20 +16,6 @@ export function SignupForm() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      const isDesktopView = window.innerWidth >= 768;
-      console.log('Screen width:', window.innerWidth, 'isDesktop:', isDesktopView);
-      setIsDesktop(isDesktopView);
-    };
-    
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -66,99 +52,94 @@ export function SignupForm() {
   };
 
   return (
-    <div className="w-full md:max-w-[400px] mx-auto px-6 md:px-0">
+    <div className="w-full max-w-none" style={{ height: '240px' }}>
       <div className="mb-8">
-        <h1 className="text-2xl font-medium mb-2">Sign up</h1>
-        <p className="text-sm text-gray-600 mb-6">
-          Already have an account?{' '}
-          <a href="/login" className="text-black font-medium hover:underline">
-            Login
-          </a>
-        </p>
+        <div className="flex items-center gap-4 mb-2">
+          <h1 className="text-2xl font-medium">Sign up</h1>
+          <span className="text-sm text-gray-600">
+            Already have an account?{' '}
+            <a href="/login" className="text-black font-medium hover:underline">
+              Login
+            </a>
+          </span>
+        </div>
         <p className="text-gray-600 text-sm leading-relaxed">
           Create your account to unlock your creative potential<br />
           with our photography community
         </p>
       </div>
 
-      <form onSubmit={handleSubmit}>
-        {/* First and Last Name - 2 columns on desktop, 1 column on mobile */}
-        <div className="w-full mb-5">
-          <div 
-            className="name-fields-grid"
-            style={{
-              display: 'flex',
-              flexDirection: isDesktop ? 'row' : 'column',
-              gap: isDesktop ? '0.75rem' : '1rem'
-            }}
-          >
-            <div style={{ flex: '1 1 0%', minWidth: 0 }}>
-              <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                First name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-                placeholder="Your name"
-                required
-              />
-            </div>
-            <div style={{ flex: '1 1 0%', minWidth: 0 }}>
-              <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                Last name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-                placeholder="Your last name"
-                required
-              />
-            </div>
+      <form onSubmit={handleSubmit} className="space-y-4 w-full">
+        {/* First and Last Name - Side by side */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="firstName" className="block text-sm font-medium mb-2">
+              First name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+              placeholder="Your name"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="lastName" className="block text-sm font-medium mb-2">
+              Last name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+              placeholder="Your last name"
+              required
+            />
           </div>
         </div>
 
-        <div className="mb-5">
-          <label htmlFor="email" className="block text-sm font-medium mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-            placeholder="Your email address"
-            required
-          />
-        </div>
-
-        <div className="mb-5">
-          <label htmlFor="password" className="block text-sm font-medium mb-2">
-            Create password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
-            placeholder="Enter password"
-            required
-          />
+        {/* Email and Create password - Side by side */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+              placeholder="Your email address"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium mb-2">
+              Create password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full h-12 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+              placeholder="Enter password"
+              required
+            />
+          </div>
         </div>
 
         {error && (
-          <div className="text-red-600 text-sm mb-5">{error}</div>
+          <div className="text-red-600 text-sm">{error}</div>
         )}
 
         <button

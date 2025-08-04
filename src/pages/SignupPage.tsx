@@ -32,17 +32,17 @@ export function SignupPage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % slideImages.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* Header */}
-      <header className="flex items-center justify-between px-8 py-6 bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-white">
+      {/* Header - Fixed position, exact Figma specs */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-white border-b border-gray-200" style={{ height: '88px' }}>
         <div className="text-2xl font-bold">STUCRUUM</div>
-        <nav className="hidden lg:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8">
           <a href="#" className="text-gray-700 hover:text-black transition-colors">The Stock Project</a>
           <a href="#" className="text-gray-700 hover:text-black transition-colors">Company</a>
           <a href="#" className="text-gray-700 hover:text-black transition-colors">Community</a>
@@ -52,11 +52,11 @@ export function SignupPage() {
         </button>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 flex">
-        {/* Mobile View - Stacked layout */}
-        <div className="lg:hidden w-full flex flex-col">
-          {/* Image Slideshow */}
+      {/* Main Content - With header offset */}
+      <div className="flex pt-[88px] min-h-screen">
+        {/* Mobile Layout */}
+        <div className="md:hidden w-full flex flex-col">
+          {/* Image Section */}
           <div className="relative h-[300px] w-full">
             {slideImages.map((image, index) => (
               <img
@@ -84,16 +84,17 @@ export function SignupPage() {
               ))}
             </div>
           </div>
-          {/* Form */}
+          
+          {/* Form Section */}
           <div className="flex-1 flex items-center justify-center p-6">
             <SignupForm />
           </div>
         </div>
 
-        {/* Desktop View - Side by side layout */}
-        <div className="hidden lg:flex w-full">
-          {/* Left Side - Image Slideshow (60%) */}
-          <div className="w-[60%] relative">
+        {/* Desktop Layout - Exact Figma proportions */}
+        <div className="hidden md:flex w-full">
+          {/* Left Side - Image (60% width, 410px height) */}
+          <div className="w-[60%] relative" style={{ height: '410px' }}>
             {slideImages.map((image, index) => (
               <img
                 key={index}
@@ -121,16 +122,20 @@ export function SignupPage() {
             </div>
           </div>
 
-          {/* Right Side - Form (40%) */}
+          {/* Right Side - Form (40% width, 512px width, 240px height) */}
           <div className="w-[40%] flex items-center justify-center px-8">
-            <SignupForm />
+            <div className="w-full max-w-[512px] flex justify-center">
+              <SignupForm />
+            </div>
           </div>
         </div>
-      </main>
+      </div>
 
-      {/* Footer */}
+      {/* Footer - Exact Figma specs */}
       <footer className="text-center py-6 text-gray-600 text-sm bg-white border-t border-gray-200">
-        2024 PHOTORUUM FACILITY
+        <span style={{ fontFamily: 'Kanit', fontWeight: 300, fontSize: '12px', lineHeight: '14px', letterSpacing: '-2%' }}>
+          2024 © PHOTORUUM FACILITY
+        </span>
       </footer>
     </div>
   );
